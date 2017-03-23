@@ -1,0 +1,24 @@
+version: '2'
+services:
+  munki-http:
+    image: xirixiz/munki-http
+    container_name: munki-http
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - munki_repo:/munki_repo
+      - /etc/localtime:/etc/localtime:ro
+  munki-smb:
+    image: xirixiz/munki-smb
+    container_name: munki-smb
+    restart: always
+    ports:
+      - 445:445
+    volumes:
+      - munki_repo:/munki_repo
+      - /etc/localtime:/etc/localtime:ro
+
+volumes:
+  munki_repo:
+
